@@ -1,9 +1,9 @@
-import React from 'react'
-
-export default function ManageProductPage() {
+const ManageProductPage = () => {
     return (
         <div>
-            Manage Product Page
+            ManageProductPage page
         </div>
     )
 }
+
+export default ManageProductPage;

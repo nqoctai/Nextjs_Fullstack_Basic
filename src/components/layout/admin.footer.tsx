@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { Layout } from 'antd';
 
 const AdminFooter = () => {
@@ -13,4 +13,4 @@ const AdminFooter = () => {
     )
 }
 
-export default AdminFooter
+export default AdminFooter;
