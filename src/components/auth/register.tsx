@@ -7,23 +7,22 @@ import { sendRequest } from '@/utils/api';
 import { useRouter } from 'next/navigation';
 
 const Register = () => {
-    const router = useRouter();
+    const router = useRouter()
+
     const onFinish = async (values: any) => {
         const { email, password, name } = values;
         const res = await sendRequest<IBackendRes<any>>({
             url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/register`,
-            method: 'POST',
+            method: "POST",
             body: {
                 email, password, name
             }
         })
-
-        console.log(res);
         if (res?.data) {
             router.push(`/verify/${res?.data?._id}`);
         } else {
             notification.error({
-                message: "Đăng ký thất bại",
+                message: "Register error",
                 description: res?.message
             })
         }

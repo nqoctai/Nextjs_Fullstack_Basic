@@ -8,25 +8,24 @@ import { useRouter } from 'next/navigation';
 
 const Verify = (props: any) => {
     const { id } = props;
-    const router = useRouter();
+
+    const router = useRouter()
+
     const onFinish = async (values: any) => {
         const { _id, code } = values;
-
         const res = await sendRequest<IBackendRes<any>>({
             url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/check-code`,
-            method: 'POST',
+            method: "POST",
             body: {
                 _id, code
             }
         })
-
-        console.log(">>>> check response", res);
         if (res?.data) {
-            message.success("Kích hoạt thành công");
+            message.success("Kích hoạt tài khoản thành công.")
             router.push(`/auth/login`);
         } else {
             notification.error({
-                message: "Kích hoạt thất bại",
+                message: "Verify error",
                 description: res?.message
             })
         }
@@ -56,6 +55,10 @@ const Verify = (props: any) => {
                         >
                             <Input disabled />
                         </Form.Item>
+                        <div>
+                            Mã code đã được gửi tới email đăng ký, vui lòng kiểm tra email.
+                        </div>
+                        <Divider />
 
                         <Form.Item
                             label="Code"
@@ -69,10 +72,8 @@ const Verify = (props: any) => {
                         >
                             <Input />
                         </Form.Item>
-                        <div>
-                            Mã code đã được gửi tới email đăng ký, vui lòng kiểm tra email
-                        </div>
-                        <Divider />
+
+
 
                         <Form.Item
                         >
